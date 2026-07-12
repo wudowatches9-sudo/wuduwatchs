@@ -1,0 +1,113 @@
+{
+  "1760501926935": {
+    "orderId": "1760501926935",
+    "cart": [
+      {
+        "id": "1",
+        "name": "Classic Crew Neck T-Shirt",
+        "slug": "classic-crew-neck-t-shirt",
+        "price": 25,
+        "images": {
+          "main": "/images/tshirt2.png",
+          "gallery": [
+            "/images/tshirt2.png",
+            "/images/shirt1.png",
+            "/images/shirt2.png"
+          ]
+        },
+        "category": "t-shirts",
+        "subcategory": "Crew Neck",
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "colors": [
+          "Black",
+          "White",
+          "Navy"
+        ],
+        "shortDescription": "A timeless essential, crafted from premium soft cotton for ultimate comfort.",
+        "longDescription": "Our Classic Crew Neck T-Shirt is a wardrobe staple. Made from 100% premium combed cotton, it offers a soft, breathable feel that lasts. Its classic fit is versatile enough to be worn on its own or as a layering piece. Available in a range of essential colors.",
+        "sizingAndFit": "Classic fit. True to size. Model is 6'1\" and wearing a size M.",
+        "materialsAndCare": "100% Combed Cotton. Machine wash cold, tumble dry low. Do not bleach.",
+        "stock": 150,
+        "isFeatured": false,
+        "rating": 4.8,
+        "reviewCount": 212,
+        "quantity": 1
+      },
+      {
+        "id": "7",
+        "name": "Flannel Checkered Shirt",
+        "slug": "flannel-checkered-shirt",
+        "price": 85,
+        "images": {
+          "main": "/images/shirt1.png",
+          "gallery": [
+            "/images/shirt1.png",
+            "/images/shirt2.png",
+            "/images/shirt3.png"
+          ]
+        },
+        "category": "shirts",
+        "subcategory": "Flannel Shirt",
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "colors": [
+          "Red/Black Plaid",
+          "Green/Blue Plaid"
+        ],
+        "shortDescription": "A rugged yet incredibly soft flannel for ultimate comfort and warmth.",
+        "longDescription": "Our Flannel Checkered Shirt is crafted from ultra-soft, double-brushed cotton flannel. It's the perfect companion for chilly days, offering both warmth and timeless style. Features two chest pockets with button flaps and a classic plaid pattern.",
+        "sizingAndFit": "Classic fit. Generously cut for layering. Model is 6'2\" and wearing a size L.",
+        "materialsAndCare": "100% Cotton Flannel. Machine wash cold. Tumble dry low.",
+        "stock": 70,
+        "isFeatured": false,
+        "rating": 4.9,
+        "reviewCount": 240,
+        "quantity": 2
+      },
+      {
+        "id": "8",
+        "name": "Short-Sleeve Denim Shirt",
+        "slug": "short-sleeve-denim-shirt",
+        "price": 65,
+        "images": {
+          "main": "/images/shirt2.png",
+          "gallery": [
+            "/images/shirt2.png",
+            "/images/shirt.png",
+            "/images/shirt3.png"
+          ]
+        },
+        "category": "shirts",
+        "subcategory": "Denim Shirt",
+        "sizes": [
+          "M",
+          "L",
+          "XL"
+        ],
+        "colors": [
+          "Light Wash",
+          "Dark Indigo"
+        ],
+        "shortDescription": "A versatile and stylish short-sleeve shirt in lightweight denim.",
+        "longDescription": "A modern take on a classic workwear staple. Our Short-Sleeve Denim Shirt is made from lightweight denim that's comfortable enough for all-day wear. It features a snap-button front and a western-style yoke for a touch of authentic charm.",
+        "sizingAndFit": "Slim fit. Tapered at the chest and waist. Model is 5'11\" and wearing a size M.",
+        "materialsAndCare": "100% Cotton Denim. Machine wash cold. Tumble dry medium.",
+        "stock": 95,
+        "isFeatured": false,
+        "rating": 4.7,
+        "reviewCount": 130,
+        "quantity": 1
+      }
+    ],
+    "total": 260
+  }
+}

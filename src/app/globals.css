@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem; /* Default border radius for rounded-lg */
+    --background: 40 33% 97%;  /* New Gallery White */
+    --foreground: 0 0% 10%;    /* New Charcoal Black */
+    --primary: 0 100% 50%;    /* Unchanged Brand Red */
+    --primary-foreground: 0 0% 100%;
+
+    /* Update secondary/accent colors to match */
+    --secondary: 0 0% 95%; /* A slightly adjusted off-white */
+    --secondary-foreground: 0 0% 10%;
+    --accent: 0 0% 92%;
+    --accent-foreground: 0 0% 10%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+    --border: 0 0% 88%;      /* New Stone Gray */
+    --card: 40 33% 97%;       /* Same as background */
+    --card-foreground: 0 0% 10%;
+  }
+
+  .dark {
+  --background: 0 0% 7%;          /* #111111 -> rich-black */
+  --foreground: 39 23% 92%;       /* #F0EBE3 -> soft-white */
+  --muted-foreground: 34 23% 61%; /* #B4A284 -> muted-gold */
+  --product-details-muted-foreground: 39 23% 92%;
+  /* --- VERIFY ALL OTHER VARIABLES ARE CORRECT --- */
+  --primary: 165 100% 30%;        /* #009B77 -> emerald-green */
+  --primary-foreground: 0 0% 100%; /* White text for on top of green */
+  --shipped-bg: 210 100% 50%;
+  --border: 40 5% 14%;           /* Matches Aura's muted-gold/20 style */
+  --card: 0 0% 7%;                /* #111111 -> Same as background */
+  --card-foreground: 39 23% 92%;  /* #F0EBE3 -> Same as foreground */
+}
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

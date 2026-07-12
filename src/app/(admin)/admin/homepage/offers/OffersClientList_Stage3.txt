@@ -1,0 +1,80 @@
+"use client";
+
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "sonner";
+import { deleteOffer } from "@/actions/offerActions";
+import { DeleteConfirmationDialog } from "@/components/admin/DeleteConfirmationDialog";
+
+interface OffersClientListProps {
+  offers: any[];
+}
+
+export function OffersClientList({ offers }: OffersClientListProps) {
+  const searchParams = useSearchParams();
+
+  // Show toast notifications from URL params
+  useEffect(() => {
+    const success = searchParams.get('success');
+    const error = searchParams.get('error');
+    
+    if (success) {
+      toast.success(success);
+      window.history.replaceState({}, '', '/admin/homepage/offers');
+    }
+    if (error) {
+      toast.error(error);
+      window.history.replaceState({}, '', '/admin/homepage/offers');
+    }
+  }, [searchParams]);
+
+  const handleDelete = async (offerId: string) => {
+    const formData = new FormData();
+    formData.append('offerId', offerId);
+    await deleteOffer(formData);
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Featured Offers</h1>
+        <Link href="/admin/homepage/offers/new">
+          <Button className="bg-green-500 text-black hover:bg-green-600">
+            Create New Offer
+          </Button>
+        </Link>
+      </div>
+      
+      <div className="space-y-4">
+        {offers.map((offer: any) => (
+          <div 
+            key={offer.id} 
+            className="flex justify-between items-center p-4 border rounded bg-white shadow-sm dark:bg-zinc-800 dark:border-zinc-700"
+          >
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+              {offer.title}
+            </h2>
+            <div className="flex gap-4">
+              <Link href={`/admin/homepage/offers/${offer.id}`}>
+                <Button variant="outline" className="text-green-500 border-green-500 hover:bg-green-50 dark:text-green-400 dark:border-green-400">
+                  Edit
+                </Button>
+              </Link>
+              <DeleteConfirmationDialog onConfirm={() => handleDelete(offer.id)}>
+                <Button 
+                  type="button"
+                  variant="destructive" 
+                  className="bg-red-500 text-white hover:bg-red-600"
+                >
+                  Delete
+                </Button>
+              </DeleteConfirmationDialog>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
