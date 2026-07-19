@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/checkout/', '/account/'],
     },
-    sitemap: 'https://autex.vercel.app/sitemap.xml',
+    sitemap: 'https://wuduwatchs.vercel.app/sitemap.xml',
   };
 }

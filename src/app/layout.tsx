@@ -15,7 +15,7 @@ const satoshi = localFont({
   variable: "--font-satoshi",
 });
 
-const siteUrl = 'https://autex.vercel.app';
+const siteUrl = 'https://wuduwatchs.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -97,7 +97,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Wudo Watches',
-              url: 'https://autex.vercel.app',
+              url: 'https://wuduwatchs.vercel.app',
             }),
           }}
         />

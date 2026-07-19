@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllProducts } from '@/lib/contentful';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://autex.vercel.app';
+  const baseUrl = 'https://wuduwatchs.vercel.app';
   
   const products = await getAllProducts();
   const productUrls = products.map(product => ({

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
 
-const siteUrl = 'https://autex.vercel.app';
+const siteUrl = 'https://wuduwatchs.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Wudo Watches | Premium Luxury Timepieces & Watches in Bangladesh',
