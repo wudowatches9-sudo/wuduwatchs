@@ -21,11 +21,8 @@ export function StickyActionFooter({ product, stock, selectedImage }: StickyActi
   };
 
   const handleAddToCart = () => {
-    // Only add to cart if size is selected (and color if product has colorSwatches)
+    // Only add to cart if size is selected
     if (!selectedSize) return;
-    if (product.colorSwatches && product.colorSwatches.length > 0 && !selectedColor) return;
-
-
 
     addToCart({
       ...product,
@@ -38,7 +35,7 @@ export function StickyActionFooter({ product, stock, selectedImage }: StickyActi
   };
 
   // Check if button should be disabled
-  const isDisabled = !selectedSize || (product.colorSwatches && product.colorSwatches.length > 0 && !selectedColor) || stock <= 0;
+  const isDisabled = !selectedSize || stock <= 0;
 
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm p-4 z-10">
@@ -51,7 +48,7 @@ export function StickyActionFooter({ product, stock, selectedImage }: StickyActi
       </AnimatedButton>
       {isDisabled && (
         <p className="text-center text-xs text-red-500 mt-2">
-          {stock <= 0 ? 'This product is out of stock' : 'Please choose case size and color'}
+          {stock <= 0 ? 'This product is out of stock' : 'Please choose case size'}
         </p>
       )}
     </div>

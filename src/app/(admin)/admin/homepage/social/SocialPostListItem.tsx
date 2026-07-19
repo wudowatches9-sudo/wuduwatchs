@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { useFormState } from "react-dom";
 import { deleteSocialPost } from "@/actions/homepageActions";
 import { DeleteConfirmationDialog } from "@/components/admin/DeleteConfirmationDialog";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Pencil, Trash2 } from "lucide-react";
 
 interface SocialPostListItemProps {
   post: any;
@@ -22,6 +23,7 @@ const initialState = {
 export function SocialPostListItem({ post }: SocialPostListItemProps) {
   const [deleteState, deleteAction] = useFormState(deleteSocialPost, initialState);
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (deleteState?.success) {
@@ -33,36 +35,61 @@ export function SocialPostListItem({ post }: SocialPostListItemProps) {
     }
   }, [deleteState, router]);
 
-  return (
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-4 rounded-lg shadow-sm border border-muted-gold/10 bg-rich-black mb-4 transition-all hover:bg-white/5 gap-4">
-      <h2 className="text-base font-semibold text-soft-white font-heading break-all line-clamp-2 md:line-clamp-1 flex-1 mr-4">
-        {post.postLink}
-      </h2>
-      <div className="flex gap-3 w-full md:w-auto mt-2 md:mt-0">
-        <Link href={`/admin/homepage/social/${post.id}`} className="flex-1 md:flex-none">
-          <Button
-            variant="outline"
-            className="w-full md:w-auto text-green-400 border-green-500/50 hover:bg-green-500/10 hover:text-green-300 font-sans h-9"
-          >
-            Edit
-          </Button>
-        </Link>
+  const handleConfirmDelete = () => {
+    if (formRef.current) {
+      formRef.current.requestSubmit();
+    }
+  };
 
-        <DeleteConfirmationDialog onConfirm={() => {
-          const form = document.getElementById(`delete-form-${post.id}`) as HTMLFormElement;
-          form.requestSubmit();
-        }}>
-          <form id={`delete-form-${post.id}`} action={deleteAction} className="flex-1 md:flex-none">
-            <input type="hidden" name="postId" value={post.id} />
-            <Button
+  const imageUrl = post.image || "/logo.png";
+
+  return (
+    <div className="bg-[#12131a] rounded-xl overflow-hidden border border-zinc-800/40 hover:border-muted-gold/20 shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
+      {/* Background Image Preview */}
+      <div className="relative aspect-square w-full bg-[#1b1c24] overflow-hidden flex items-center justify-center">
+        <Image
+          src={imageUrl}
+          alt="Social media post image"
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+
+      {/* Information Section */}
+      <div className="p-4 flex flex-col flex-grow justify-between gap-4">
+        <div>
+          <h3 className="font-heading font-semibold text-soft-white text-xs break-all line-clamp-2" title={post.postLink}>
+            {post.postLink}
+          </h3>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-2 pt-2 border-t border-zinc-800/40">
+          <Link href={`/admin/homepage/social/${post.id}`} className="flex-grow">
+            <button
               type="button"
-              variant="destructive"
-              className="w-full md:w-auto bg-red-600/90 text-white hover:bg-red-600 font-sans border border-red-500/50 h-9"
+              className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-800/60 hover:bg-zinc-800 text-soft-white hover:text-white rounded-lg border border-zinc-700/50 hover:border-zinc-600 transition-all font-sans text-sm font-medium"
             >
-              Delete
-            </Button>
+              <Pencil size={15} className="text-muted-gold" />
+              <span>Edit Post</span>
+            </button>
+          </Link>
+
+          <form ref={formRef} action={deleteAction} className="hidden">
+            <input type="hidden" name="postId" value={post.id} />
           </form>
-        </DeleteConfirmationDialog>
+
+          <DeleteConfirmationDialog onConfirm={handleConfirmDelete}>
+            <button
+              type="button"
+              className="p-2 bg-red-950/20 hover:bg-red-950/40 text-red-400 hover:text-red-300 rounded-lg border border-red-900/30 hover:border-red-900/50 transition-all flex items-center justify-center"
+              title="Delete Post"
+            >
+              <Trash2 size={16} />
+            </button>
+          </DeleteConfirmationDialog>
+        </div>
       </div>
     </div>
   );

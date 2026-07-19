@@ -33,6 +33,7 @@ function transformSupabaseProduct(row: any): Product {
     rating: Number(row.rating || 0),
     reviewCount: Number(row.review_count || 0),
     colorSwatches: Array.isArray(row.color_swatches) ? row.color_swatches : [],
+    createdAt: row.created_at,
     salePercentage:
       originalPrice && price
         ? Math.round(((originalPrice - price) / originalPrice) * 100)

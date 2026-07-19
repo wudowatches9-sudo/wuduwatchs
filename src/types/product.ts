@@ -22,4 +22,5 @@ export interface Product {
   rating?: number;
   reviewCount?: number;
   salePercentage?: number;
+  createdAt?: string;
 }

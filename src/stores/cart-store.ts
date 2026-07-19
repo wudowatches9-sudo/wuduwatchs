@@ -17,21 +17,24 @@ interface CartState {
   clearCart: () => void;
 }
 
+// Helper to compare colors
+const isSameColor = (
+  color1?: string | { name: string; hex: string } | null,
+  color2?: string | { name: string; hex: string } | null
+) => {
+  if (!color1 && !color2) return true;
+  if (!color1 || !color2) return false;
+  if (typeof color1 === 'string' && typeof color2 === 'string') return color1 === color2;
+  if (typeof color1 === 'object' && typeof color2 === 'object') return color1.name === color2.name;
+  return false;
+};
+
 export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       cartItems: [],
       addToCart: (item) => {
         set((state) => {
-          // Helper to compare colors
-          const isSameColor = (color1?: string | { name: string; hex: string }, color2?: string | { name: string; hex: string }) => {
-            if (!color1 && !color2) return true;
-            if (!color1 || !color2) return false;
-            if (typeof color1 === 'string' && typeof color2 === 'string') return color1 === color2;
-            if (typeof color1 === 'object' && typeof color2 === 'object') return color1.name === color2.name;
-            return false;
-          };
-
           // Check if item with same id, size, color, AND image already exists
           // Different images should create separate cart items!
           const existingItem = state.cartItems.find(
@@ -63,13 +66,13 @@ export const useCartStore = create<CartState>()(
         set((state) => ({
           cartItems: state.cartItems.filter(
             (item) =>
-              !(item.id === productId && item.size === size && item.color === color)
+              !(item.id === productId && item.size === size && isSameColor(item.color, color))
           ),
         })),
       updateQuantity: (productId, quantity, size, color) =>
         set((state) => ({
           cartItems: state.cartItems.map((item) =>
-            item.id === productId && item.size === size && item.color === color
+            item.id === productId && item.size === size && isSameColor(item.color, color)
               ? { ...item, quantity }
               : item
           ),

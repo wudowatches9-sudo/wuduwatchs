@@ -59,11 +59,8 @@ export function ProductDetails({ product, stock, selectedImage }: ProductDetails
   };
 
   const handleAddToCart = () => {
-    // Only add to cart if size is selected (and color if product has colorSwatches)
+    // Only add to cart if size is selected
     if (!selectedSize) return;
-    if (product.colorSwatches && product.colorSwatches.length > 0 && !selectedColor) return;
-
-
     
     addToCart({
       ...product,
@@ -76,7 +73,7 @@ export function ProductDetails({ product, stock, selectedImage }: ProductDetails
   };
 
   // Check if button should be disabled
-  const isDisabled = !selectedSize || (product.colorSwatches && product.colorSwatches.length > 0 && !selectedColor) || stock <= 0;
+  const isDisabled = !selectedSize || stock <= 0;
 
 
   return (
@@ -154,7 +151,10 @@ export function ProductDetails({ product, stock, selectedImage }: ProductDetails
                   {product.colorSwatches.map((swatch: { name: string; hex: string }) => (
                     <button
                       key={swatch.name}
-                      onClick={() => setSelectedColor(swatch)}
+                      onClick={() => {
+                        const isSelected = isSwatchObject(selectedColor) && selectedColor.name === swatch.name;
+                        setSelectedColor(isSelected ? null : swatch);
+                      }}
                       className={cn(
                         'h-10 w-10 rounded-full border transition-all border-border dark:border-zinc-800',
                         isSwatchObject(selectedColor) && selectedColor.name === swatch.name
@@ -250,7 +250,10 @@ export function ProductDetails({ product, stock, selectedImage }: ProductDetails
               {product.colorSwatches.map((swatch: { name: string; hex: string }) => (
                 <button
                   key={swatch.name}
-                  onClick={() => setSelectedColor(swatch)}
+                  onClick={() => {
+                    const isSelected = isSwatchObject(selectedColor) && selectedColor.name === swatch.name;
+                    setSelectedColor(isSelected ? null : swatch);
+                  }}
                   className={cn(
                     'h-10 w-10 rounded-full border-2 transition-all border-border dark:border-zinc-800',
                     isSwatchObject(selectedColor) && selectedColor.name === swatch.name
@@ -289,7 +292,7 @@ export function ProductDetails({ product, stock, selectedImage }: ProductDetails
           </AnimatedButton>
           {isDisabled && (
             <p className="text-center text-xs text-red-500 mt-2">
-              {stock <= 0 ? 'This product is out of stock' : 'Please choose case size and color'}
+              {stock <= 0 ? 'This product is out of stock' : 'Please choose case size'}
             </p>
           )}
         </div>

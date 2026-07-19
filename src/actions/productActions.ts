@@ -55,18 +55,28 @@ export async function createOrUpdateProduct(prevState: any, formData: FormData) 
     return { error: "Product name is required." };
   }
 
+  const priceRaw = formData.get('price') as string;
+  if (!priceRaw || isNaN(Number(priceRaw)) || Number(priceRaw) <= 0) {
+    return { error: "Price is required and must be a valid positive number." };
+  }
+
+  const sizesRaw = formData.get("sizes") as string || "";
+  const sizes = sizesRaw.split(',').map(s => s.trim()).filter(Boolean);
+  if (sizes.length === 0) {
+    return { error: "At least one case size is required." };
+  }
+
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '-');
   const data = {
-    price: parseInt(formData.get('price') as string || '0', 10),
+    price: parseInt(priceRaw, 10),
     originalPrice: parseInt(formData.get('originalPrice') as string || '0', 10),
     stock: parseInt(formData.get('stock') as string || '0', 10),
     rating: parseFloat(formData.get("rating") as string || '0'),
     reviewCount: parseInt(formData.get("reviewCount") as string || '0', 10),
   };
 
-  const category = formData.get("category") as string;
+  const category = (formData.get("category") as string) || "watches";
   const subcategory = formData.get("subcategory") as string;
-  const sizes = (formData.get("sizes") as string).split(',').map(s => s.trim()).filter(Boolean);
   const shortDescription = formData.get("shortDescription") as string;
   const longDescription = formData.get("longDescription") as string;
   const sizingAndFit = formData.get("sizingAndFit") as string;

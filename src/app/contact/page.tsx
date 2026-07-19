@@ -66,7 +66,7 @@ export default function ContactPage() {
               Our support team is active on WhatsApp for urgent queries and orders.
             </p>
             <Link 
-              href="https://wa.me/8801304561370" 
+              href="https://wa.me/8801576645415" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors group/link"
@@ -134,7 +134,7 @@ export default function ContactPage() {
               <FontAwesomeIcon icon={faTiktok} className="h-5 w-5" />
             </Link>
             <Link 
-              href="https://t.me/+8801304561370" 
+              href="https://t.me/+8801576645415" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="p-3 rounded-full bg-card border border-border hover:border-primary/45 hover:text-primary transition-all hover:-translate-y-1 duration-300"

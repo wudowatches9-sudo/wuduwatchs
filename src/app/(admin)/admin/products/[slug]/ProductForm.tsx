@@ -137,10 +137,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
               id="category"
               name="category"
               defaultValue={product?.fields.category || ""}
-              required
               className="p-3 bg-white/10 text-foreground border border-muted-gold/20 rounded-lg backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary font-heading w-full text-sm"
             >
-              <option value="" className="bg-black text-white">Select a category</option>
+              <option value="" className="bg-black text-white">Select a category (Optional)</option>
               <option value="automatic" className="bg-black text-white">Automatic</option>
               <option value="quartz" className="bg-black text-white">Quartz</option>
               <option value="chronograph" className="bg-black text-white">Chronograph</option>
@@ -168,7 +167,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
               min="0"
               placeholder="e.g., 100"
               defaultValue={product?.fields.stock?.toString() || ""}
-              required
             />
           </div>
           <div>
@@ -178,6 +176,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
               name="sizes"
               placeholder="e.g., 38mm, 40mm, 42mm"
               defaultValue={product?.fields.sizes?.join(", ") || ""}
+              required
             />
           </div>
 
@@ -238,6 +237,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
               name="mainImage"
               type="file"
               onChange={handleMainImageChange}
+              required={!product}
             />
             {mainImagePreview && (
               <div className="mt-2">

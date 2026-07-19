@@ -6,17 +6,17 @@ import { Mail, MessageSquareText, Link as LinkIcon } from 'lucide-react';
 
 const contactDetails = {
   customerSupport: {
-      phoneNumbers: ['+8801626985454', '+8801621518538', '+8801635814979'],
+      phoneNumbers: ['+880 1576-645415'],
       email: 'wudowatches@gmail.com',
-      whatsapp: '+8801304561370',
-      telegram: '+8801304561370',
+      whatsapp: '+880 1576-645415',
+      telegram: '+880 1576-645415',
   },
   socialMedia: {
       facebook: 'https://www.facebook.com/share/16AYxJpL1d/?mibextid=wwXIfr',
       instagram: 'https://www.instagram.com/classymart2024?igsh=bXAyZm95Z2tramRo&utm_source=qr',
       tiktok: 'https://www.tiktok.com/@classymart3?_t=ZS-90oiQSAg4FJ&_r=1',
-      whatsapp: 'https://wa.me/8801304561370',
-      telegram: 'https://t.me/+8801304561370',
+      whatsapp: 'https://wa.me/8801576645415',
+      telegram: 'https://t.me/+8801576645415',
   },
 };
 
@@ -193,7 +193,7 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
                 {contactDetails.customerSupport.phoneNumbers.map((num, index) => (
                     <li key={index}>
-                        <a href={`tel:${num}`} className="font-sans text-sm text-foreground/60 hover:text-foreground">
+                        <a href={`tel:${num.replace(/[\s-]/g, '')}`} className="font-sans text-sm text-foreground/60 hover:text-foreground">
                             {num}
                         </a>
                     </li>
@@ -218,7 +218,7 @@ export function Footer() {
                     >
                         <FontAwesomeIcon icon={faTelegram} size="sm" />
                     </Link>
-                    <span className="font-sans text-sm text-foreground/60">+8801304561370</span>
+                    <span className="font-sans text-sm text-foreground/60">{contactDetails.customerSupport.whatsapp}</span>
                 </li>
                 <li>
                     <a href={`mailto:${contactDetails.customerSupport.email}`} className="font-sans text-sm text-foreground/60 hover:text-foreground">
